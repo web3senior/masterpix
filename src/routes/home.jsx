@@ -95,7 +95,7 @@ function Home({ title }) {
   const copy = async () => {
     document.querySelectorAll(`#artboardSVG rect`).forEach((item) => {
       let modified = item.getAttribute(`modified`)
-      if (modified ===false) {
+      if (modified === false) {
         item.style.fill = `transparent`
       }
     })
@@ -113,7 +113,7 @@ function Home({ title }) {
   const download = () => {
     document.querySelectorAll(`#artboardSVG rect`).forEach((item) => {
       let modified = item.getAttribute(`modified`)
-      if (modified ===false) {
+      if (modified === false) {
         item.style.fill = `transparent`
       }
     })
@@ -345,7 +345,7 @@ function Home({ title }) {
   }
 
   useEffect(() => {
-  getMintPrice().then((res) => console.log(res))
+    //getMintPrice().then((res) => console.log(res))
     // Restore prev draw
     // const innerSVG = document.querySelector(`.${styles['board']} svg`).innerHTML
     // if (localStorage.getItem(`draw`)) {
@@ -430,7 +430,7 @@ function Home({ title }) {
 
           <div className="card form mt-10 w-100">
             <div className={`card__body`}>
-            <div>
+              <div>
                 <input type={`number`} id={`count`} placeholder={`Count`} defaultValue={count} onChange={(e) => setCount(e.target.value)} />
               </div>
 
