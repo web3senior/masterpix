@@ -104,7 +104,7 @@ export const fetchProfile = async (addr) => {
  * Connect wallet
  */
 export const isWalletConnected = async () => {
-  const web3 = new Web3(getDefaultChain() === `LUKSO` ? window.lukso : window.ethereum)
+  const web3 = new Web3(getDefaultChain().name === `LUKSO` ? window.lukso : window.ethereum)
 
   try {
     let accounts = await web3.eth.getAccounts()
@@ -115,15 +115,16 @@ export const isWalletConnected = async () => {
 }
 
 export const isUPinstalled = () => PROVIDER && PROVIDER.isUniversalProfileExtension
+
 export function getDefaultChain() {
-  return localStorage.getItem(`defaultChain`) || chain[0]
+  return localStorage.getItem(`defaultChain`) || chain[0].name
 }
 
 export function AuthProvider({ children }) {
   const [wallet, setWallet] = useState(null)
   const [profile, setProfile] = useState(null)
   const [loading, setLoading] = useState(true)
-  const [defaultChain, setDefaultChain] = useState()
+  const [defaultChain, setDefaultChain] = useState(localStorage.getItem(`defaultChain`) || chain[0])
   const navigate = useNavigate()
   const location = useLocation()
 
@@ -134,9 +135,9 @@ export function AuthProvider({ children }) {
   }
 
   const connectWallet = async () => {
-    let loadingToast = toast.loading('Loading...')
+    let loadingToast = toast.loading('Waiting')
 
-    const web3 = new Web3(getDefaultChain() === `LUKSO` ? window.lukso : window.ethereum)
+    const web3 = new Web3(defaultChain === `LUKSO` ? window.lukso : window.ethereum)
 
     try {
       let accounts = await web3.eth.getAccounts()
@@ -156,9 +157,6 @@ export function AuthProvider({ children }) {
   }
 
   useEffect(() => {
-    if (getDefaultChain() !== null) setDefaultChain(getDefaultChain())
-    else setDefaultChain(chain[0].name)
-
     setLoading(true)
     isWalletConnected().then((addr) => {
       if (addr !== undefined) {

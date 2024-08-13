@@ -6,7 +6,7 @@ import {useAuth, chain ,getDefaultChain} from './../contexts/AuthContext'
 import MaterialIcon from './helper/MaterialIcon'
 import Icon from './helper/MaterialIcon'
 import Logo from './../../src/assets/logo.svg'
-import LogoIcon from './../../src/assets/logo-icon.svg'
+import LogoIcon from './../../src/assets/logo.svg'
 import Loading from './components/Loading'
 import XIcon from './../../src/assets/icon-x.svg'
 import CGIcon from './../../src/assets/icon-cg.svg'
@@ -69,7 +69,7 @@ export default function Root() {
    * @returns
    */
   const SelectedChain = () => {
-    const filteredChain = chain.filter((item, i) => (item.name === getDefaultChain()) || chain[0])
+    const filteredChain = chain.filter((item, i) => item.name === getDefaultChain())
     return <img alt={`${filteredChain[0].name}`} src={`${filteredChain[0].logo}`} title={`${filteredChain[0].name}`} />
   }
 
