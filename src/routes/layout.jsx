@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { Outlet, useLocation, Link, NavLink, useNavigate, useNavigation, ScrollRestoration } from 'react-router-dom'
 import ConnectPopup from './components/ConnectPopup'
 import { Toaster } from 'react-hot-toast'
-import {useAuth, chain } from './../contexts/AuthContext'
+import {useAuth, chain ,getDefaultChain} from './../contexts/AuthContext'
 import MaterialIcon from './helper/MaterialIcon'
 import Icon from './helper/MaterialIcon'
 import Logo from './../../src/assets/logo.svg'
@@ -69,7 +69,7 @@ export default function Root() {
    * @returns
    */
   const SelectedChain = () => {
-    const filteredChain = chain.filter((item, i) => item.name === auth.defaultChain)
+    const filteredChain = chain.filter((item, i) => (item.name === getDefaultChain()) || chain[0])
     return <img alt={`${filteredChain[0].name}`} src={`${filteredChain[0].logo}`} title={`${filteredChain[0].name}`} />
   }
 
