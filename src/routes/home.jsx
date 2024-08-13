@@ -354,7 +354,7 @@ function Home({ title }) {
 
   return (
     <>
-      <section className={`${styles.section} ms-motion-slideDownIn d-f-c flex-column`}>
+      <section className={`${styles.section} ms-motion-slideDownIn d-f-c flex-column d-none`}>
         <div className={`${styles['hero']} w-100 d-f-c flex-column`}>
           <figure className={`d-f-c`}>
             <img alt={import.meta.env.VITE_TITLE} src={Hero} />
