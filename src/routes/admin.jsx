@@ -301,7 +301,7 @@ function Admin({ title }) {
     const web3 = new Web3( window.lukso )
     const t = toast.loading(`Waiting for transaction's confirmation`)
     e.target.innerText = `Waiting...`
-
+console.log(contracts)
     try {
       window.lukso
         .request({ method: 'eth_requestAccounts' })
@@ -327,18 +327,18 @@ console.log((document.querySelector(`#price_name`).value, web3.utils.toWei(docum
 
               toast.success(`Done`)
 
-              e.target.innerText = `Transfer`
+              e.target.innerText = `Change Price`
               toast.dismiss(t)
             })
             .catch((error) => {
-              e.target.innerText = `Transfer`
+              e.target.innerText = `Change Price`
               toast.dismiss(t)
             })
           // Stop loader when connected
           //connectButton.classList.remove("loadingButton");
         })
         .catch((error) => {
-          e.target.innerText = `Transfer`
+          e.target.innerText = `Change Price`
           // Handle error
           console.log(error, error.code)
           toast.dismiss(t)
