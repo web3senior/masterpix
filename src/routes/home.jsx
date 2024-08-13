@@ -31,7 +31,7 @@ function Home({ title }) {
   const [isLoading, setIsLoading] = useState(true)
   const [showArtboard, setShowArtboard] = useState(false)
   const [color, setColor] = useState(``)
-  const [name, setName] = useState(``)
+  const [assetname, setAssetname] = useState(``)
   const [description, setDescription] = useState(``)
   const [count, setCount] = useState(1)
   const auth = useAuth()
@@ -266,8 +266,8 @@ function Home({ title }) {
           console.log(`Verifiable URL`, web3.utils.keccak256(result))
           rawMetadata = web3.utils.toHex({
             LSP4Metadata: {
-              name: import.meta.env.VITE_NAME,
-              description: `${import.meta.env.VITE_SLOGAN}`,
+              name: assetname,
+              description: `${description}`,
               links: [
                 { title: 'Website', url: 'https://masterpix.vercel.app/' },
                 { title: 'Mint', url: 'https://masterpix.vercel.app/' },
@@ -275,7 +275,6 @@ function Home({ title }) {
                 { title: 'Telegram', url: 'https://t.me/arattalabs' },
               ],
               attributes: [
-                { key: 'Name', value: name },
                 { key: 'Version', value: 1 },
               ],
               icon: [{ width: 512, height: 512, url: 'ipfs://QmWpSVntG9Mmk9CHczf9ZACKDTuQMVUedEDcCdwwbqBs9b', verification: { method: 'keccak256(bytes)', data: '0xe303725c7fa6e0c8741376085a3859d858eb4d188afa6402bb39d34f40e5ed3f' } }],
@@ -310,7 +309,7 @@ function Home({ title }) {
             })
         })
       } else if (auth.defaultChain === 'Arbitrum') {
-        const json = { name: document.querySelector(`#name`).value, description: document.querySelector(`#description`).value, image: `https://ipfs.io/ipfs/${imageUrl}`, version: '1' }
+        const json = { name: assetname, description: description, image: `https://ipfs.io/ipfs/${imageUrl}`, version: '1' }
         rawMetadata = 'data:application/json;base64,' + btoa(unescape(encodeURIComponent(JSON.stringify(json))))
 
         // mint
@@ -435,11 +434,11 @@ function Home({ title }) {
               </div>
 
               <div className="mt-10">
-                <input type={`text`} id={`name`} placeholder={`Name`} defaultValue={name} onChange={(e) => setName(e.target.value)} />
+                <input type={`text`} id={`name`} placeholder={`Name`} defaultValue={assetname} onChange={(e) => setAssetname(e.target.value)} />
               </div>
 
               <div className="mt-10">
-                <input type={`text`} id={`description`} placeholder={`Description`} defaultValue={description} onChange={(e) => setName(e.target.value)} />
+                <input type={`text`} id={`description`} placeholder={`Description`} defaultValue={description} onChange={(e) => setDescription(e.target.value)} />
               </div>
 
               <div className="mt-10">
