@@ -8,7 +8,6 @@ import './styles/global.scss'
 import ErrorPage from './error-page'
 import Loading from './routes/components/Loading.jsx'
 const Layout = lazy(() => import('./routes/layout.jsx'))
-const UserLayout = lazy(() => import('./routes/userLayout.jsx'))
 import Home, { loader as homeLoader } from './routes/home.jsx'
 import About from './routes/about.jsx'
 import Ecosystem from './routes/ecosystem.jsx'
