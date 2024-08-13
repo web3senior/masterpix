@@ -157,6 +157,7 @@ export function AuthProvider({ children }) {
   }
 
   useEffect(() => {
+    if (localStorage.getItem(`defaultChain`) === null) localStorage.setItem(`defaultChain`, getDefaultChain())
     setLoading(true)
     isWalletConnected().then((addr) => {
       if (addr !== undefined) {
