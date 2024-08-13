@@ -1,0 +1,81 @@
+:root {
+  font-family: 'GeistVF', var(--ff-segoe);
+  font-weight: 400;
+  line-height: 1.4;
+  font-size: 14px;
+  // color-scheme: light dark;
+  // color: rgba(255, 255, 255, 0.87);
+  background: #fff;
+  
+  -webkit-tap-highlight-color: transparent;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+html,
+body {
+  font-family: 'GeistVF', var(--ff-segoe) !important;
+  height: 100%;
+  ::selection {
+    color: var(--white);
+    background-color: var(--color-primary);
+  }
+}
+
+body {
+  overflow-y: auto;
+}
+
+#root {
+  height: 100%;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  grid-template-columns: repeat(1, 1fr);
+
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0px 1000px #ffffff inset !important;
+}
+input {
+  outline: 0;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type='number'] {
+  -moz-appearance: textfield;
+}
+
+input::-webkit-calendar-picker-indicator {
+  display: none;
+  opacity: 0;
+}
+
+@media (prefers-color-scheme: light) {
+  // :root {
+  //   color: #213547;
+  //   background-color: #ffffff;
+  // }
+
+  // button {
+  //   background-color: #f9f9f9;
+  // }
+}
