@@ -104,7 +104,7 @@ export const fetchProfile = async (addr) => {
  * Connect wallet
  */
 export const isWalletConnected = async () => {
-  const web3 = new Web3(getDefaultChain().name === `LUKSO` ? window.lukso : window.ethereum)
+  const web3 = new Web3(getDefaultChain() === `LUKSO` ? window.lukso : window.ethereum)
 
   try {
     let accounts = await web3.eth.getAccounts()
