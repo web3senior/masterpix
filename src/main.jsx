@@ -72,39 +72,39 @@ const router = createBrowserRouter([
       },
     ],
   },
-  {
-    path: 'user',
-    element: (
-      <Suspense fallback={<Loading />}>
-        <AuthProvider>
-          <UserLayout />
-        </AuthProvider>
-      </Suspense>
-    ),
-    errorElement: <ErrorPage />,
-    children: [
-      {
-        index: true,
-        element: <Dashboard to={`/dashboard`} replace />,
-      },
-      {
-        path: `dashboard`,
-        element: <Dashboard title={`Dashboard`} />,
-      },
-      {
-        path: `brand`,
-        element: <Dashboard title={`Brand`} />,
-      },
-      {
-        path: `transfer`,
-        element: <Dashboard title={`Transfer`} />,
-      },
-      {
-        path: `map`,
-        element: <Dashboard title={`Map`} />,
-      },
-    ],
-  },
+  // {
+  //   path: 'user',
+  //   element: (
+  //     <Suspense fallback={<Loading />}>
+  //       <AuthProvider>
+  //         <UserLayout />
+  //       </AuthProvider>
+  //     </Suspense>
+  //   ),
+  //   errorElement: <ErrorPage />,
+  //   children: [
+  //     {
+  //       index: true,
+  //       element: <Dashboard to={`/dashboard`} replace />,
+  //     },
+  //     {
+  //       path: `dashboard`,
+  //       element: <Dashboard title={`Dashboard`} />,
+  //     },
+  //     {
+  //       path: `brand`,
+  //       element: <Dashboard title={`Brand`} />,
+  //     },
+  //     {
+  //       path: `transfer`,
+  //       element: <Dashboard title={`Transfer`} />,
+  //     },
+  //     {
+  //       path: `map`,
+  //       element: <Dashboard title={`Map`} />,
+  //     },
+  //   ],
+  // },
 ])
 
 ReactDOM.createRoot(document.getElementById('root')).render(<RouterProvider router={router} />)
