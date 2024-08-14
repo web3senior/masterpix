@@ -8,7 +8,17 @@
       { "title": "𝕏", "url": "https://x.com/ArattaLabsDev" },
       { "title": "Telegram", "url": "https://t.me/arattalabs" }
     ],
-    "icon": [{ "width": 512, "height": 512, "url": "ipfs://QmWpSVntG9Mmk9CHczf9ZACKDTuQMVUedEDcCdwwbqBs9b", "verification": { "method": "keccak256(bytes)", "data": "0xe303725c7fa6e0c8741376085a3859d858eb4d188afa6402bb39d34f40e5ed3f" } }],
+    "icon": [
+      {
+        "width": 512,
+        "height": 512,
+        "url": "ipfs://QmWpSVntG9Mmk9CHczf9ZACKDTuQMVUedEDcCdwwbqBs9b",
+        "verification": {
+          "method": "keccak256(bytes)",
+          "data": "0xe303725c7fa6e0c8741376085a3859d858eb4d188afa6402bb39d34f40e5ed3f"
+        }
+      }
+    ],
     "backgroundImage": [
       {
         "width": 1601,
@@ -21,6 +31,18 @@
       }
     ],
     "assets": [],
-    "images": [{ "width": 512, "height": 512, "url": "ipfs://QmQ8F6qPGET2peNpatHmjiJYypqRs6k79AGYcUWQosKFeg", "verification": { "method": "keccak256(bytes)", "data": "0xecea84f2d238bc0bc929e4b432a6654bd8e8337c57868e30963a2e51edd86710" } }]
+    "images": [
+      [
+        {
+          "width": 512,
+          "height": 512,
+          "url": "ipfs://QmQ8F6qPGET2peNpatHmjiJYypqRs6k79AGYcUWQosKFeg",
+          "verification": {
+            "method": "keccak256(bytes)",
+            "data": "0xecea84f2d238bc0bc929e4b432a6654bd8e8337c57868e30963a2e51edd86710"
+          }
+        }
+      ]
+    ]
   }
 }

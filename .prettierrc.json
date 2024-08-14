@@ -20,6 +20,13 @@
       }
     },
     {
+      "files": "*.json",
+      "options": {
+        "semi": true,
+        "printWidth": 80
+      }
+    },
+    {
       "files": ["*.html", "*.xhtml"],
       "options": {
         "tabWidth": 4

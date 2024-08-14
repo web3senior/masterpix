@@ -291,10 +291,13 @@ function Admin({ title }) {
     }
   }
 
-  const handleWithdraw = async () =>
-    await contract.methods.withdraw().send({
+  const handleWithdraw = async () => {
+    const web3 = new Web3( window.lukso )
+    await  new web3.eth.Contract(contracts[0].abi, contracts[0].contract_address).methods.withdraw().send({
       from: auth.wallet,
     })
+  }
+  
 
     const rAsset = async (url) => {
       //https://ipfs.io/ipfs/QmdrcEfQnWZhisc2bF4544xdJGHBQhWLaoGBXZSvrvSTxT
@@ -421,7 +424,7 @@ console.log((document.querySelector(`#price_name`).value, web3.utils.toWei(docum
   }
   useEffect(() => {
     const web3 = new Web3( window.lukso )
-    rAsset(`https://ipfs.io/ipfs/QmSE15JAFuguzm4NRnx6i7S4zE5svQNGfewZWhuiuLgzWc`).then((res) => {
+    rAsset(`https://ipfs.io/ipfs/QmSZKkUKhRwS5VVhZKSDFgx4LtBDjUDajBQMFoqA6Z2rjt`).then((res) => {
       console.log(res)
       const verfiableUriIdentifier = '0x0000'
       const verificationMethod = web3.utils.keccak256('keccak256(utf8)').substr(0, 10)
@@ -429,7 +432,7 @@ console.log((document.querySelector(`#price_name`).value, web3.utils.toWei(docum
       console.log(verificationData)
 //return
       const verificationDataLength = web3.utils.padLeft(web3.utils.numberToHex(verificationData.substring(2).length / 2), 4)
-      const url = web3.utils.utf8ToHex('ipfs://QmSE15JAFuguzm4NRnx6i7S4zE5svQNGfewZWhuiuLgzWc')
+      const url = web3.utils.utf8ToHex('ipfs://QmSZKkUKhRwS5VVhZKSDFgx4LtBDjUDajBQMFoqA6Z2rjt')
       const VerfiableURI = verfiableUriIdentifier + verificationMethod.substring(2) + verificationDataLength.substring(2) + verificationData.substring(2) + url.substring(2)
       console.log(VerfiableURI)
     })
@@ -491,7 +494,7 @@ console.log((document.querySelector(`#price_name`).value, web3.utils.toWei(docum
             <div className={`card__header`}>Change collection metadata</div>
             <div className={`card__body form`}>
 
-              <button className="button mt-10" onClick={(e) => handleUpdateCollectionMetadata(e, `0x00006f357c6a00205f01c874a30401f505020e9b697cda28c60f55472235ac680842769c852828ec697066733a2f2f516d534531354a41467567757a6d344e526e7836693753347a45357376514e476665775a57687569754c677a5763`)}>
+              <button className="button mt-10" onClick={(e) => handleUpdateCollectionMetadata(e, `0x00006f357c6a002095052792b6689501781609a43911802d8572830da6bacd1433c11236cee98ec5697066733a2f2f516d535a4b6b554b68527753355656685a4b5344466778344c7442446a5544616a42514d466f7141365a32726a74`)}>
                 change
               </button>
             </div>
