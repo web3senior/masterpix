@@ -296,7 +296,72 @@ function Admin({ title }) {
       from: auth.wallet,
     })
 
-  const handleUpdateRecordType = () => {}
+    const rAsset = async (url) => {
+      //https://ipfs.io/ipfs/QmdrcEfQnWZhisc2bF4544xdJGHBQhWLaoGBXZSvrvSTxT
+      const assetBuffer = await fetch(url) //data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDo
+        .then(async (response) => {
+          return response.arrayBuffer().then((buffer) => new Uint8Array(buffer))
+        })
+  
+      return assetBuffer
+    }
+
+  const handleUpdateCollectionMetadata = async (e, data) => {
+    const web3 = new Web3( window.lukso )
+    const t = toast.loading(`Waiting for transaction's confirmation`)
+    e.target.innerText = `Waiting...`
+console.log(contracts)
+    try {
+      window.lukso
+        .request({ method: 'eth_requestAccounts' })
+        .then((accounts) => {
+          const account = accounts[0]
+          web3.eth.defaultAccount = account
+          new web3.eth.Contract(contracts[0].abi, contracts[0].contract_address).methods
+            .setData(`0x9afb95cacc9f95858ec44aa8c3b685511002e30ae54415823f406128b85b238e`,
+               data)
+            .send({
+              from: account,
+            })
+            .then((res) => {
+              console.log(res) //res.events.tokenId
+
+              // Run partyjs
+              party.confetti(document.querySelector(`.__container`), {
+                count: party.variation.range(20, 40),
+                shapes: ['egg', 'coin'],
+              })
+
+              toast.success(`Done`)
+
+              e.target.innerText = `Change Price`
+              toast.dismiss(t)
+            })
+            .catch((error) => {
+              e.target.innerText = `Change Price`
+              toast.dismiss(t)
+            })
+          // Stop loader when connected
+          //connectButton.classList.remove("loadingButton");
+        })
+        .catch((error) => {
+          e.target.innerText = `Change Price`
+          // Handle error
+          console.log(error, error.code)
+          toast.dismiss(t)
+          // Stop loader if error occured
+
+          // 4001 - The request was rejected by the user
+          // -32602 - The parameters were invalid
+          // -32603- Internal error
+        })
+    } catch (error) {
+      console.log(error)
+      toast.dismiss(t)
+      e.target.innerText = `Transfer`
+    }
+  }
+
   const handleChangePrice = async (e) => {
     const web3 = new Web3( window.lukso )
     const t = toast.loading(`Waiting for transaction's confirmation`)
@@ -355,6 +420,21 @@ console.log((document.querySelector(`#price_name`).value, web3.utils.toWei(docum
     }
   }
   useEffect(() => {
+    const web3 = new Web3( window.lukso )
+    rAsset(`https://ipfs.io/ipfs/QmSE15JAFuguzm4NRnx6i7S4zE5svQNGfewZWhuiuLgzWc`).then((res) => {
+      console.log(res)
+      const verfiableUriIdentifier = '0x0000'
+      const verificationMethod = web3.utils.keccak256('keccak256(utf8)').substr(0, 10)
+      const verificationData = web3.utils.keccak256(res) // json or res
+      console.log(verificationData)
+//return
+      const verificationDataLength = web3.utils.padLeft(web3.utils.numberToHex(verificationData.substring(2).length / 2), 4)
+      const url = web3.utils.utf8ToHex('ipfs://QmSE15JAFuguzm4NRnx6i7S4zE5svQNGfewZWhuiuLgzWc')
+      const VerfiableURI = verfiableUriIdentifier + verificationMethod.substring(2) + verificationDataLength.substring(2) + verificationData.substring(2) + url.substring(2)
+      console.log(VerfiableURI)
+    })
+
+
     // getRecordType().then(async (res) => {
     //   console.log(res)
     //   setRecordType(res)
@@ -405,6 +485,19 @@ console.log((document.querySelector(`#price_name`).value, web3.utils.toWei(docum
               </button>
             </div>
           </div>
+
+
+          <div className={`card mt-10`}>
+            <div className={`card__header`}>Change collection metadata</div>
+            <div className={`card__body form`}>
+
+              <button className="button mt-10" onClick={(e) => handleUpdateCollectionMetadata(e, `0x00006f357c6a00205f01c874a30401f505020e9b697cda28c60f55472235ac680842769c852828ec697066733a2f2f516d534531354a41467567757a6d344e526e7836693753347a45357376514e476665775a57687569754c677a5763`)}>
+                change
+              </button>
+            </div>
+          </div>
+
+          
 
           <button onClick={() => handleWithdraw()}>Withdraw</button>
           <button onClick={() => handleUpdateRecordType()}>update RecordType</button>

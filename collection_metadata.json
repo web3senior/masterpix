@@ -1,0 +1,26 @@
+{
+  "LSP4Metadata": {
+    "name": "Masterpix",
+    "description": "Masterpix is a web-based platform that empowers artists and creators to transform their pixel art into unique and valuable NFTs. Our intuitive artboard makes it easy for anyone to create stunning pixel art, while our marketplace provides a dynamic space to discover, trade, and collect these digital masterpieces.",
+    "links": [
+      { "title": "Website", "url": "https://masterpix.vercel.app/" },
+      { "title": "Mint", "url": "https://masterpix.vercel.app/" },
+      { "title": "𝕏", "url": "https://x.com/ArattaLabsDev" },
+      { "title": "Telegram", "url": "https://t.me/arattalabs" }
+    ],
+    "icon": [{ "width": 512, "height": 512, "url": "ipfs://QmWpSVntG9Mmk9CHczf9ZACKDTuQMVUedEDcCdwwbqBs9b", "verification": { "method": "keccak256(bytes)", "data": "0xe303725c7fa6e0c8741376085a3859d858eb4d188afa6402bb39d34f40e5ed3f" } }],
+    "backgroundImage": [
+      {
+        "width": 1601,
+        "height": 401,
+        "url": "ipfs://QmV9XC39gLDNEAysVyavLg9LPAe4GWM6TK5DhVbT5pLd31",
+        "verification": {
+          "method": "keccak256(bytes)",
+          "data": "0x5d8edbad5aeca8b55d14b468c88874db1e6aa5eb65a6e2325f65abfd11144d60"
+        }
+      }
+    ],
+    "assets": [],
+    "images": [{ "width": 512, "height": 512, "url": "ipfs://QmQ8F6qPGET2peNpatHmjiJYypqRs6k79AGYcUWQosKFeg", "verification": { "method": "keccak256(bytes)", "data": "0xecea84f2d238bc0bc929e4b432a6654bd8e8337c57868e30963a2e51edd86710" } }]
+  }
+}
