@@ -354,7 +354,7 @@ function Home({ title }) {
 
   return (
     <>
-      <section className={`${styles.section} ms-motion-slideDownIn d-f-c flex-column d-none`}>
+      <section className={`${styles.section} ms-motion-slideDownIn d-f-c flex-column`}>
         <div className={`${styles['hero']} w-100 d-f-c flex-column`}>
           <figure className={`d-f-c`}>
             <img alt={import.meta.env.VITE_TITLE} src={Hero} />
@@ -430,7 +430,18 @@ function Home({ title }) {
           <div className="card form mt-10 w-100">
             <div className={`card__body`}>
               <div>
-                <input type={`number`} id={`count`} placeholder={`Count`} defaultValue={count} onChange={(e) => setCount(e.target.value)} />
+                <select name="count" id={`count`} defaultValue={count} onChange={(e) => setCount(e.target.value)}>
+                  <option value={1}>1</option>
+                  <option value={2}>2</option>
+                  <option value={3}>3</option>
+                  <option value={4}>4</option>
+                  <option value={5}>5</option>
+                  <option value={6}>6</option>
+                  <option value={7}>7</option>
+                  <option value={8}>8</option>
+                  <option value={9}>9</option>
+                  <option value={10}>10</option>
+                </select>
               </div>
 
               <div className="mt-10">
