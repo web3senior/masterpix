@@ -274,10 +274,8 @@ function Home({ title }) {
                 { title: '𝕏', url: 'https://x.com/ArattaLabsDev' },
                 { title: 'Telegram', url: 'https://t.me/arattalabs' },
               ],
-              attributes: [
-                { key: 'Version', value: 1 },
-              ],
-              icon: [{ width: 512, height: 512, url: 'ipfs://QmWpSVntG9Mmk9CHczf9ZACKDTuQMVUedEDcCdwwbqBs9b', verification: { method: 'keccak256(bytes)', data: '0xe303725c7fa6e0c8741376085a3859d858eb4d188afa6402bb39d34f40e5ed3f' } }],
+              attributes: [{ key: 'Version', value: 1 }],
+              icon: [{ width: 500, height: 500, url: 'ipfs://QmWpSVntG9Mmk9CHczf9ZACKDTuQMVUedEDcCdwwbqBs9b', verification: { method: 'keccak256(bytes)', data: '0xe303725c7fa6e0c8741376085a3859d858eb4d188afa6402bb39d34f40e5ed3f' } }],
               backgroundImage: [],
               assets: [],
               images: [[{ width: 500, height: 500, url: `ipfs://${imageUrl}`, verification: { method: 'keccak256(bytes)', data: web3.utils.keccak256(result) } }]],
