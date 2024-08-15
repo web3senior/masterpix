@@ -424,7 +424,7 @@ console.log((document.querySelector(`#price_name`).value, web3.utils.toWei(docum
   }
   useEffect(() => {
     const web3 = new Web3( window.lukso )
-    rAsset(`https://ipfs.io/ipfs/QmSZKkUKhRwS5VVhZKSDFgx4LtBDjUDajBQMFoqA6Z2rjt`).then((res) => {
+    rAsset(`https://ipfs.io/ipfs/QmTF6rxDqCvLfaPGAGXpe5P8zq7sHoTHcFGQBFZPqq4aEo`).then((res) => {
       console.log(res)
       const verfiableUriIdentifier = '0x0000'
       const verificationMethod = web3.utils.keccak256('keccak256(utf8)').substr(0, 10)
@@ -432,7 +432,7 @@ console.log((document.querySelector(`#price_name`).value, web3.utils.toWei(docum
       console.log(verificationData)
 //return
       const verificationDataLength = web3.utils.padLeft(web3.utils.numberToHex(verificationData.substring(2).length / 2), 4)
-      const url = web3.utils.utf8ToHex('ipfs://QmSZKkUKhRwS5VVhZKSDFgx4LtBDjUDajBQMFoqA6Z2rjt')
+      const url = web3.utils.utf8ToHex('ipfs://QmTF6rxDqCvLfaPGAGXpe5P8zq7sHoTHcFGQBFZPqq4aEo')
       const VerfiableURI = verfiableUriIdentifier + verificationMethod.substring(2) + verificationDataLength.substring(2) + verificationData.substring(2) + url.substring(2)
       console.log(VerfiableURI)
     })
@@ -494,7 +494,7 @@ console.log((document.querySelector(`#price_name`).value, web3.utils.toWei(docum
             <div className={`card__header`}>Change collection metadata</div>
             <div className={`card__body form`}>
 
-              <button className="button mt-10" onClick={(e) => handleUpdateCollectionMetadata(e, `0x00006f357c6a002095052792b6689501781609a43911802d8572830da6bacd1433c11236cee98ec5697066733a2f2f516d535a4b6b554b68527753355656685a4b5344466778344c7442446a5544616a42514d466f7141365a32726a74`)}>
+              <button className="button mt-10" onClick={(e) => handleUpdateCollectionMetadata(e, `0x00006f357c6a00206f375d7488442535846011ef5930061519646de4b655dc2644e0a614d62e11b2697066733a2f2f516d5446367278447143764c6661504741475870653550387a713773486f54486346475142465a5071713461456f`)}>
                 change
               </button>
             </div>

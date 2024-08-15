@@ -10,8 +10,8 @@
     ],
     "icon": [
       {
-        "width": 512,
-        "height": 512,
+        "width": 500,
+        "height": 500,
         "url": "ipfs://QmWpSVntG9Mmk9CHczf9ZACKDTuQMVUedEDcCdwwbqBs9b",
         "verification": {
           "method": "keccak256(bytes)",
@@ -34,8 +34,8 @@
     "images": [
       [
         {
-          "width": 512,
-          "height": 512,
+          "width": 500,
+          "height": 500,
           "url": "ipfs://QmQ8F6qPGET2peNpatHmjiJYypqRs6k79AGYcUWQosKFeg",
           "verification": {
             "method": "keccak256(bytes)",
