@@ -12,6 +12,7 @@ import Hero from './../../src/assets/hero.png'
 import party from 'party-js'
 import styles from './Home.module.scss'
 import { PinataSDK } from 'pinata'
+import { Tooltip as ReactTooltip } from 'react-tooltip'
 import Web3 from 'web3'
 const pinata = new PinataSDK({
   pinataJwt: import.meta.env.VITE_PINATA_API_KEY,
@@ -276,7 +277,17 @@ function Home({ title }) {
               ],
               attributes: [{ key: 'Version', value: 1 }],
               icon: [{ width: 500, height: 500, url: 'ipfs://QmWpSVntG9Mmk9CHczf9ZACKDTuQMVUedEDcCdwwbqBs9b', verification: { method: 'keccak256(bytes)', data: '0xe303725c7fa6e0c8741376085a3859d858eb4d188afa6402bb39d34f40e5ed3f' } }],
-              backgroundImage: [],
+              backgroundImage: [
+                {
+                  width: 1601,
+                  height: 401,
+                  url: 'ipfs://QmcTYAQmt7ZPbzR6w3XXzGwgfEu4zU2T4LLukqLBvJg2Eg',
+                  verification: {
+                    method: 'keccak256(bytes)',
+                    data: '0x0fd8498ada7a39b1eb9f6ed54adc8950a84d5d79ad8418eb46fbcaf6a5c9638b',
+                  },
+                },
+              ],
               assets: [],
               images: [[{ width: 500, height: 500, url: `ipfs://${imageUrl}`, verification: { method: 'keccak256(bytes)', data: web3.utils.keccak256(result) } }]],
             },
@@ -372,23 +383,28 @@ function Home({ title }) {
                 <input type={`text`} id={`y`} defaultValue={32} />
               </div>
               <div>
-                <button className={`${styles['button-add']}`} onClick={() => add()}>
+                <button className={`${styles['button-add']}`} onClick={() => add()} data-tooltip-id={`tooltip-add`}>
+                  <ReactTooltip id="tooltip-add" place="top" content="Create artboard" />
                   <Icon name={`add`} />
                 </button>
               </div>
             </li>
             <li className={`${styles['action']} d-flex align-items-center`} style={{ columnGap: `.2rem` }}>
-              <button onClick={() => copy()}>
+              <button onClick={() => copy()} data-tooltip-id={`tooltip-copy`}>
+                <ReactTooltip id="tooltip-copy" place="top" content="Copy" />
                 <Icon name={`content_copy`} />
               </button>
-              <button onClick={() => download()}>
+              <button onClick={() => download()} data-tooltip-id={`tooltip-download`}>
+                <ReactTooltip id="tooltip-download" place="top" content="Download" />
                 <Icon name={`download_for_offline`} />
               </button>
-              <button onClick={() => clear()}>
+              <button onClick={() => clear()} data-tooltip-id={`tooltip-clear`}>
+                <ReactTooltip id="tooltip-clear" place="top" content="Clear" />
                 <Icon name={`mop`} />
               </button>
 
-              <input type={`color`} list={`defaultColors`} defaultValue={localStorage.getItem(`color`)} onChange={(e) => localStorage.setItem(`color`, e.target.value)} />
+              <ReactTooltip id="tooltip-color" place="top" content="Choose color" />
+              <input type={`color`} list={`defaultColors`} data-tooltip-id={`tooltip-color`} defaultValue={localStorage.getItem(`color`)} onChange={(e) => localStorage.setItem(`color`, e.target.value)} />
               <datalist id={`defaultColors`}>
                 <option>#007bff</option>
                 <option>#6610f2</option>

@@ -292,28 +292,27 @@ function Admin({ title }) {
   }
 
   const handleWithdraw = async () => {
-    const web3 = new Web3( window.lukso )
-    await  new web3.eth.Contract(contracts[0].abi, contracts[0].contract_address).methods.withdraw().send({
+    const web3 = new Web3(window.lukso)
+    await new web3.eth.Contract(contracts[0].abi, contracts[0].contract_address).methods.withdraw().send({
       from: auth.wallet,
     })
   }
-  
 
-    const rAsset = async (url) => {
-      //https://ipfs.io/ipfs/QmdrcEfQnWZhisc2bF4544xdJGHBQhWLaoGBXZSvrvSTxT
-      const assetBuffer = await fetch(url) //data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDo
-        .then(async (response) => {
-          return response.arrayBuffer().then((buffer) => new Uint8Array(buffer))
-        })
-  
-      return assetBuffer
-    }
+  const rAsset = async (url) => {
+    //https://ipfs.io/ipfs/QmdrcEfQnWZhisc2bF4544xdJGHBQhWLaoGBXZSvrvSTxT
+    const assetBuffer = await fetch(url) //data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDo
+      .then(async (response) => {
+        return response.arrayBuffer().then((buffer) => new Uint8Array(buffer))
+      })
+
+    return assetBuffer
+  }
 
   const handleUpdateCollectionMetadata = async (e, data) => {
-    const web3 = new Web3( window.lukso )
+    const web3 = new Web3(window.lukso)
     const t = toast.loading(`Waiting for transaction's confirmation`)
     e.target.innerText = `Waiting...`
-console.log(contracts)
+    console.log(contracts)
     try {
       window.lukso
         .request({ method: 'eth_requestAccounts' })
@@ -321,8 +320,7 @@ console.log(contracts)
           const account = accounts[0]
           web3.eth.defaultAccount = account
           new web3.eth.Contract(contracts[0].abi, contracts[0].contract_address).methods
-            .setData(`0x9afb95cacc9f95858ec44aa8c3b685511002e30ae54415823f406128b85b238e`,
-               data)
+            .setData(`0x9afb95cacc9f95858ec44aa8c3b685511002e30ae54415823f406128b85b238e`, data)
             .send({
               from: account,
             })
@@ -366,10 +364,10 @@ console.log(contracts)
   }
 
   const handleChangePrice = async (e) => {
-    const web3 = new Web3( window.lukso )
+    const web3 = new Web3(window.lukso)
     const t = toast.loading(`Waiting for transaction's confirmation`)
     e.target.innerText = `Waiting...`
-console.log(contracts)
+    console.log(contracts)
     try {
       window.lukso
         .request({ method: 'eth_requestAccounts' })
@@ -377,7 +375,7 @@ console.log(contracts)
           const account = accounts[0]
           console.log(account)
           // walletID.innerHTML = `Wallet connected: ${account}`;
-console.log((document.querySelector(`#price_name`).value, web3.utils.toWei(document.querySelector(`#price_value`).value, `ether`)))
+          console.log((document.querySelector(`#price_name`).value, web3.utils.toWei(document.querySelector(`#price_value`).value, `ether`)))
           web3.eth.defaultAccount = account
           new web3.eth.Contract(contracts[0].abi, contracts[0].contract_address).methods
             .updateFee(document.querySelector(`#price_name`).value, web3.utils.toWei(document.querySelector(`#price_value`).value, `ether`))
@@ -423,20 +421,19 @@ console.log((document.querySelector(`#price_name`).value, web3.utils.toWei(docum
     }
   }
   useEffect(() => {
-    const web3 = new Web3( window.lukso )
-    rAsset(`https://ipfs.io/ipfs/QmTF6rxDqCvLfaPGAGXpe5P8zq7sHoTHcFGQBFZPqq4aEo`).then((res) => {
+    const web3 = new Web3(window.lukso)
+    rAsset(`https://ipfs.io/ipfs/QmWxG7hSUSbk5kMQ1489j6VSLNYUfzcmDrqa1MvGFf2rGu`).then((res) => {
       console.log(res)
       const verfiableUriIdentifier = '0x0000'
       const verificationMethod = web3.utils.keccak256('keccak256(utf8)').substr(0, 10)
       const verificationData = web3.utils.keccak256(res) // json or res
       console.log(verificationData)
-//return
+      //return
       const verificationDataLength = web3.utils.padLeft(web3.utils.numberToHex(verificationData.substring(2).length / 2), 4)
-      const url = web3.utils.utf8ToHex('ipfs://QmTF6rxDqCvLfaPGAGXpe5P8zq7sHoTHcFGQBFZPqq4aEo')
+      const url = web3.utils.utf8ToHex('ipfs://QmWxG7hSUSbk5kMQ1489j6VSLNYUfzcmDrqa1MvGFf2rGu')
       const VerfiableURI = verfiableUriIdentifier + verificationMethod.substring(2) + verificationDataLength.substring(2) + verificationData.substring(2) + url.substring(2)
       console.log(VerfiableURI)
     })
-
 
     // getRecordType().then(async (res) => {
     //   console.log(res)
@@ -477,7 +474,7 @@ console.log((document.querySelector(`#price_name`).value, web3.utils.toWei(docum
             <div className={`card__header`}>Mint Price</div>
             <div className={`card__body form`}>
               <div>
-                <input className="input" type="text" id="price_name"  defaultValue={`mint_price`} placeholder="Price name" />
+                <input className="input" type="text" id="price_name" defaultValue={`mint_price`} placeholder="Price name" />
               </div>
               <div>
                 <input className="input" type="text" id="price_value" placeholder="Price value" />
@@ -489,18 +486,19 @@ console.log((document.querySelector(`#price_name`).value, web3.utils.toWei(docum
             </div>
           </div>
 
-
           <div className={`card mt-10`}>
             <div className={`card__header`}>Change collection metadata</div>
             <div className={`card__body form`}>
-
-              <button className="button mt-10" onClick={(e) => handleUpdateCollectionMetadata(e, `0x00006f357c6a00206f375d7488442535846011ef5930061519646de4b655dc2644e0a614d62e11b2697066733a2f2f516d5446367278447143764c6661504741475870653550387a713773486f54486346475142465a5071713461456f`)}>
+              <button
+                className="button mt-10"
+                onClick={(e) =>
+                  handleUpdateCollectionMetadata(e, `0x00006f357c6a00203cc08215ae99dc53fc131b306fe06b9638bda2957bb2bdfe8d9bfb87fe1033ff697066733a2f2f516d5778473768535553626b356b4d51313438396a3656534c4e5955667a636d44727161314d7647466632724775`)
+                }
+              >
                 change
               </button>
             </div>
           </div>
-
-          
 
           <button onClick={() => handleWithdraw()}>Withdraw</button>
           <button onClick={() => handleUpdateRecordType()}>update RecordType</button>

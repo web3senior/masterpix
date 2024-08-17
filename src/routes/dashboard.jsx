@@ -10,7 +10,7 @@ export default function About({ title }) {
   const [taotlRecordType, setTotalRecordType] = useState(0)
   const [totalResolve, setTotalResolve] = useState(0)
   useEffect(() => {
-    document.querySelector(`#pageTitle`).innerText = title
+
   }, [])
   const getTotalRecordType = async () => await contract.methods._recordTypeCounter().call()
   const getTotalResolve = async () => await contract.methods._resolveCounter().call()

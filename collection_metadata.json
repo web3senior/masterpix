@@ -23,10 +23,10 @@
       {
         "width": 1601,
         "height": 401,
-        "url": "ipfs://QmV9XC39gLDNEAysVyavLg9LPAe4GWM6TK5DhVbT5pLd31",
+        "url": "ipfs://QmcTYAQmt7ZPbzR6w3XXzGwgfEu4zU2T4LLukqLBvJg2Eg",
         "verification": {
           "method": "keccak256(bytes)",
-          "data": "0x5d8edbad5aeca8b55d14b468c88874db1e6aa5eb65a6e2325f65abfd11144d60"
+          "data": "0x0fd8498ada7a39b1eb9f6ed54adc8950a84d5d79ad8418eb46fbcaf6a5c9638b"
         }
       }
     ],
