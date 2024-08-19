@@ -30,12 +30,12 @@ export default function About({ title }) {
     const web3 = new Web3()
     setIsLoading(!isLoading)
     getFee(`mint_fee`).then((res) => {
-      setMintFee(web3.utils.toNumber(res))
+      setMintFee(web3.utils.fromWei(web3.utils.toNumber(res), `ether`))
       setIsLoading(false)
     })
 
     getFee(`update_fee`).then((res) => {
-      setUpdateFee(web3.utils.toNumber(res))
+      setUpdateFee(web3.utils.fromWei(web3.utils.toNumber(res), `ether`))
       setIsLoading(false)
     })
 
