@@ -14,6 +14,7 @@ import About from './routes/about.jsx'
 import Ecosystem from './routes/ecosystem.jsx'
 import Admin from './routes/admin.jsx'
 import Fee from './routes/fee.jsx'
+import Owned from './routes/owned.jsx'
 import TermsOfService from './routes/terms-of-service.jsx'
 import PrivacyPolicy from './routes/privacy-policy.jsx'
 import Dashboard from './routes/dashboard.jsx'
@@ -73,8 +74,8 @@ const router = createBrowserRouter([
         element: <Dashboard title={`Transfer`} />,
       },
       {
-        path: `map`,
-        element: <Dashboard title={`Map`} />,
+        path: `owned`,
+        element: <Owned title={`Owned`} />,
       },
     ],
   },

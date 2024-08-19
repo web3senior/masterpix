@@ -20,20 +20,6 @@
     column-gap: 0.5rem;
     font-size: 14px;
 
-    &:after {
-      content: 'mainnet';
-      position: absolute;
-      right: 0.5rem;
-      bottom: -1em;
-      background-color: var(--primary);
-      color: var(--white);
-      border-radius: 999px;
-      padding: 0rem 0.5rem;
-      font-size: 10px;
-      font-weight: 700;
-      line-height: unset;
-    }
-
     img {
       height: 37px;
       @include small-down() {

@@ -126,7 +126,7 @@ export default function Root() {
                 </button>
               </>
             ) : (
-              <Link to={`/`} className={`${styles['profile']} d-f-c user-select-none`}>
+              <Link to={`user/dashboard`} className={`${styles['profile']} d-f-c user-select-none`}>
                 <div className={`${styles['profile__wallet']} d-f-c`}>
                   <svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
                     <g>

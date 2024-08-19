@@ -6,13 +6,10 @@ import {useAuth } from '../contexts/AuthContext'
 import MaterialIcon from './helper/MaterialIcon'
 import Shimmer from './helper/Shimmer'
 import Logo from './../../src/assets/logo.svg'
-import TelegramIcon from './../../src/assets/icon-telegram.svg'
-import XIcon from './../../src/assets/icon-x.svg'
-import CGIcon from './../../src/assets/icon-cg.svg'
-import GitHubIcon from './../../src/assets/icon-github.svg'
 import EthereumLogo from './../../src/assets/ethereum-logo.svg'
 import ArbitrumLogo from './../../src/assets/arbitrum-logo.svg'
 import LuksoLogo from './../../src/assets/lukso.svg'
+import MenuIcon from './../../src/assets/menu-icon.svg'
 import Icon from './helper/MaterialIcon'
 import party from 'party-js'
 import styles from './UserLayout.module.scss'
@@ -20,29 +17,17 @@ import styles from './UserLayout.module.scss'
 party.resolvableShapes['Logo'] = `<img src="${Logo}"/>`
 
 const links = [
+  // {
+  //   name: `Dashboard`,
+  //   icon: <Icon name={`dashboard`} />,
+  //   target: '',
+  //   path: `dashboard`,
+  // },
   {
-    name: `Dashboard`,
+    name: `Owned`,
     icon: <Icon name={`dashboard`} />,
     target: '',
-    path: `dashboard`,
-  },
-  {
-    name: `Data List`,
-    icon: <Icon name={`dashboard`} />,
-    target: '',
-    path: `datalist`,
-  },
-  {
-    name: `New Data`,
-    icon: <Icon name={`dashboard`} />,
-    target: '',
-    path: `new`,
-  },
-  {
-    name: `Order`,
-    icon: <Icon name={`flowsheet`} />,
-    target: '',
-    path: `order`,
+    path: `owned`,
   },
 ]
 
@@ -114,35 +99,35 @@ export default function Root() {
       {connectPopup && <ConnectPopup connectPopup={connectPopup} setConnectPopup={setConnectPopup} />}
 
       <header className={`${styles.header}`}>
-        <div className={`__container`} data-width={`xxlarge`}>
-          <div className={`d-flex align-items-center justify-content-between`}>
-       
-              {/* Logo */}
-                <Link to={`/`} className={`${styles['logo']}`}>
-                  <figure className={`d-flex flex-row align-items-center justify-content-start`}>
-                    <img alt={import.meta.env.VITE_NAME} src={Logo} />
-                  </figure>
-                </Link>
+        <div className={`__container d-flex flex-row align-items-center justify-content-between h-100`} data-width={`xxlarge`}>
+          {/* Logo */}
+          <Link to={`/`}>
+            <div className={`${styles['logo']} d-flex align-items-center`}>
+              <img alt={import.meta.env.VITE_TITLE} src={Logo} />
+              <figcaption>{import.meta.env.VITE_NAME}</figcaption>
+              <figure>
+                <img src={MenuIcon} className={`${styles['logo__nav']} ms-hiddenLgUp`} />
+              </figure>
+            </div>
+          </Link>
 
-                {/* Nav */}
-                <ul className={`${styles['nav']} d-flex flex-row align-items-center justify-content-start`}>
-                  {links.map((item, i) => {
-                    return (
-                      <li key={i}>
-                        <NavLink to={item.path} target={item.target}>
-                          {item.name}
-                        </NavLink>
-                      </li>
-                    )
-                  })}
-                </ul>
+          {/* Nav */}
+          <ul className={`${styles['nav']} d-flex flex-row align-items-center justify-content-start`}>
+            {links.map((item, i) => {
+              return (
+                <li key={i}>
+                  <NavLink to={item.path} target={item.target}>
+                    {item.name}
+                  </NavLink>
+                </li>
+              )
+            })}
+          </ul>
 
-                {/* Connect */}
-                <div className={`d-flex flex-row align-items-center justify-content-end`} style={{ columnGap: `.3rem` }}>
-            <div className={`${styles['network']} d-flex align-items-center justify-content-end`} onClick={()=>{
-              document.querySelector(`.${styles['network-list']}`).classList.toggle(`d-none`)
-            }}>
-              <SelectedChain />
+          {/* Connect */}
+          <div className={`d-flex flex-row align-items-center justify-content-end`} style={{ columnGap: `.3rem` }}>
+            <div className={`${styles['network']} d-flex align-items-center justify-content-end`} onClick={() => showNetworkList()}>
+              {auth.defaultChain && <SelectedChain />}
             </div>
 
             {!auth.wallet ? (
@@ -161,7 +146,7 @@ export default function Root() {
                 </button>
               </>
             ) : (
-              <Link to={`/user/dashboard`} className={`${styles['profile']} d-f-c user-select-none`}>
+              <Link to={`#`} className={`${styles['profile']} d-f-c user-select-none`}>
                 <div className={`${styles['profile__wallet']} d-f-c`}>
                   <svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
                     <g>
@@ -176,14 +161,14 @@ export default function Root() {
                       </g>
                     </g>
                   </svg>
-                  <b> {auth.wallet && `${auth.wallet.slice(0, 4)}...${auth.wallet.slice(38)}`}</b>
+                  <b>{auth.wallet && `${auth.wallet.slice(0, 4)}...${auth.wallet.slice(38)}`}</b>
                 </div>
               </Link>
             )}
 
             <div className={`${styles['network-list']} ms-depth-4 d-none`}>
               <ul>
-                {chain &&
+                {auth.defaultChain &&
                   chain.length > 0 &&
                   chain.map((item, i) => {
                     return (
@@ -191,21 +176,23 @@ export default function Root() {
                         key={i}
                         onClick={() => {
                           localStorage.setItem(`defaultChain`, item.name)
-                          window.location.reload()
+                          auth.setDefaultChain(item.name)
+                          showNetworkList()
+                              auth.isWalletConnected().then((addr) => {
+                                auth.setWallet(addr)
+                              })
                         }}
                       >
                         <figure className={`d-flex flex-row align-items-center justify-content-start`} style={{ columnGap: `.5rem` }}>
                           <img alt={`${item.name}`} src={item.logo} />
                           <figcaption>{item.name}</figcaption>
-                          {item.name.toLowerCase() === defaultChain && <Icon name={`check`} style={{ marginLeft: `auto`, color: `var(--color-primary)` }} />}
+                          {item.name === auth.defaultChain && <Icon name={`check`} style={{ marginLeft: `auto`, color: `var(--color-primary)` }} />}
                         </figure>
                       </li>
                     )
                   })}
               </ul>
             </div>
-          </div>
-      
           </div>
         </div>
       </header>
@@ -244,7 +231,7 @@ export default function Root() {
           </ul>
         </nav> */}
 
-      <main>
+      <main className={`${styles.main}`}>
         <Outlet />
       </main>
     </>
