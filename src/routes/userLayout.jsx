@@ -17,12 +17,12 @@ import styles from './UserLayout.module.scss'
 party.resolvableShapes['Logo'] = `<img src="${Logo}"/>`
 
 const links = [
-  // {
-  //   name: `Dashboard`,
-  //   icon: <Icon name={`dashboard`} />,
-  //   target: '',
-  //   path: `dashboard`,
-  // },
+  {
+    name: `Dashboard`,
+    icon: <Icon name={`dashboard`} />,
+    target: '',
+    path: `dashboard`,
+  },
   {
     name: `Owned`,
     icon: <Icon name={`dashboard`} />,
