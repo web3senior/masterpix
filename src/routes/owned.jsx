@@ -91,7 +91,7 @@ export default function Owned({ title }) {
                     <div className={`${styles['token__item']} noSelect item${i} card__body`}>
                       {item.LSP4Metadata.images.length > 0 && (
                         <figure title={`${item.tokenId}`}>
-                          <img src={`https://api.universalprofile.cloud/ipfs/${item.LSP4Metadata.images[0][0].url.replace('ipfs://', '').replace('://', '')}`} />
+                          <img src={`${import.meta.env.VITE_IPFS_GATEWAY}${item.LSP4Metadata.images[0][0].url.replace('ipfs://', '').replace('://', '')}`} />
                         </figure>
                       )}
                       <p className={`text-center`} title={item.tokenId}>
