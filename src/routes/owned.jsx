@@ -58,7 +58,6 @@ export default function Owned({ title }) {
       res.map((item, i) => {
         getDataForTokenId(item).then((data) => {
           data = web3.utils.hexToUtf8(data)
-          console.log(data)
           data = data.slice(data.search(`data:application/json;`), data.length)
 
           // Read the data url
