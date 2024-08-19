@@ -63,7 +63,7 @@ export default function About({ title }) {
           <div className={`card`}>
             <div className={`card__body d-flex align-items-center justify-content-between`}>
               <div>
-                <span>Total supply per mint</span>
+                <span>Maximum supply per mint</span>
                 <h1>{10}</h1>
               </div>
               <div className={`${styles['card-icon']}`}>
