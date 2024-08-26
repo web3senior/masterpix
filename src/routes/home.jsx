@@ -332,7 +332,7 @@ function Home({ title }) {
             .mint(rawMetadata, count)
             .send({
               from: auth.wallet,
-              value: web3.utils.toWei(2, `ether`),
+              value: web3.utils.toWei(1, `ether`),
             })
             .then((res) => {
               console.log(res) //res.events.tokenId
