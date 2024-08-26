@@ -13,6 +13,7 @@ import Home, { loader as homeLoader } from './routes/home.jsx'
 import About from './routes/about.jsx'
 import Ecosystem from './routes/ecosystem.jsx'
 import Admin from './routes/admin.jsx'
+import Marketplace from './routes/marketplace.jsx'
 import Fee from './routes/fee.jsx'
 import Owned from './routes/owned.jsx'
 import TermsOfService from './routes/terms-of-service.jsx'
@@ -43,6 +44,10 @@ const router = createBrowserRouter([
       {
         path: `ecosystem`,
         element: <Ecosystem title={`Ecosystem`} />,
+      },
+      {
+        path: `marketplace`,
+        element: <Marketplace title={`Marketplace`} />,
       },
       {
         path: `admin`,

@@ -99,7 +99,7 @@ export default function Root() {
       {connectPopup && <ConnectPopup connectPopup={connectPopup} setConnectPopup={setConnectPopup} />}
 
       <header className={`${styles.header}`}>
-        <div className={`__container d-flex flex-row align-items-center justify-content-between h-100`} data-width={`xxlarge`}>
+      <div className={`${styles.header__container} __container d-flex flex-row align-items-center justify-content-between h-100 ms-depth-4`} data-width={`xxxlarge`}>
           {/* Logo */}
           <Link to={`/`}>
             <div className={`${styles['logo']} d-flex align-items-center`}>

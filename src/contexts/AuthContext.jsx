@@ -4,6 +4,7 @@ import ABIobject from './../abi/masterpix.json'
 import ABIobjectLUKSO from './../abi/masterpixLUKSO.json'
 import ArbitrumLogo from './../../src/assets/arbitrum-logo.svg'
 import LuksoLogo from './../../src/assets/lukso.svg'
+import LSP0ERC725Account from '@lukso/lsp-smart-contracts/artifacts/LSP0ERC725Account.json'
 // import lsp3ProfileSchema from '@erc725/erc725.js/schemas/LSP3ProfileMetadata.json'
 import toast from 'react-hot-toast'
 import Loading from './../routes/components/Loading'
@@ -64,8 +65,8 @@ export const getIPFS = async (CID) => {
  */
 
 export const fetchProfile = async (addr) => {
-  //console.log(addr)
-  var contract = new web3.eth.Contract(LSP0ERC725Account.abi, addr)
+  const web3 = new Web3(getDefaultChain() === `LUKSO` ? window.lukso : window.ethereum)
+  const contract = new web3.eth.Contract(LSP0ERC725Account.abi, addr)
   try {
     return contract.methods
       .getData('0x5ef83ad9559033e6e941db7d7c495acdce616347d28e90c7ce47cbfcfcad3bc5')
@@ -89,9 +90,9 @@ export const fetchProfile = async (addr) => {
         const json = await getIPFS(web3.utils.hexToUtf8(url).replace('ipfs://', '').replace('://', ''))
         return json
         // compare hashes
-        if (web3.utils.keccak256(JSON.stringify(json)) === hash.replace(hashFunction, '')) {
-          return json
-        } else false
+        // if (web3.utils.keccak256(JSON.stringify(json)) === hash.replace(hashFunction, '')) {
+        //   return json
+        // } else false
         // }
       })
   } catch (error) {
@@ -145,7 +146,7 @@ export function AuthProvider({ children }) {
       accounts = await web3.eth.getAccounts()
       //console.log(accounts)
       setWallet(accounts[0])
-      //fetchProfile(accounts[0]).then((res) => setProfile(res))
+      fetchProfile(accounts[0]).then((res) => setProfile(res))
       toast.dismiss(loadingToast)
       toast.success(`Wallet successfuly connected`)
       navigate(`/`)
@@ -165,7 +166,7 @@ export function AuthProvider({ children }) {
         setWallet(addr)
         localStorage.setItem(`wallet_addr`, addr)
         setLoading(false)
-        //fetchProfile(addr).then((res) => setProfile(res))
+        fetchProfile(addr).then((res) => setProfile(res))
       }
       setLoading(false)
     })

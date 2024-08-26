@@ -10,6 +10,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@lukso/lsp-smart-contracts": "^0.15.0",
+    "@svgdotjs/svg.js": "^3.2.4",
+    "@svgdotjs/svg.resize.js": "^2.0.2",
+    "@svgdotjs/svg.select.js": "^4.0.1",
     "animate.css": "^4.1.1",
     "office-ui-fabric-core": "^11.1.0",
     "party-js": "^2.2.0",

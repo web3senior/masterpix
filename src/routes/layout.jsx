@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { Outlet, useLocation, Link, NavLink, useNavigate, useNavigation, ScrollRestoration } from 'react-router-dom'
 import ConnectPopup from './components/ConnectPopup'
 import { Toaster } from 'react-hot-toast'
-import {useAuth, chain ,getDefaultChain} from './../contexts/AuthContext'
+import { useAuth, chain, getDefaultChain } from './../contexts/AuthContext'
 import MaterialIcon from './helper/MaterialIcon'
 import Icon from './helper/MaterialIcon'
 import Logo from './../../src/assets/logo.svg'
@@ -24,12 +24,12 @@ const links = [
     target: '',
     path: ``,
   },
-  // {
-  //   name: 'Sample',
-  //   icon: null,
-  //   target: '',
-  //   path: `sample`,
-  // },
+  {
+    name: 'Marketplace',
+    icon: null,
+    target: '',
+    path: `marketplace`,
+  },
   // {
   //   name: 'Pricing',
   //   icon: null,
@@ -56,14 +56,13 @@ const links = [
   },
 ]
 
-
 export default function Root() {
   const [network, setNetwork] = useState()
   const [isLoading, setIsLoading] = useState()
   const auth = useAuth()
 
-  const showNetworkList = () =>  document.querySelector(`.${styles['network-list']}`).classList.toggle(`d-none`)
-  
+  const showNetworkList = () => document.querySelector(`.${styles['network-list']}`).classList.toggle(`d-none`)
+
   /**
    * Selected chain
    * @returns
@@ -73,26 +72,35 @@ export default function Root() {
     return <img alt={`${filteredChain[0].name}`} src={`${filteredChain[0].logo}`} title={`${filteredChain[0].name}`} />
   }
 
+  const handleOpenNav = () => {
+    document.querySelector('#modal').classList.toggle('open')
+    document.querySelector('#modal').classList.toggle('blur')
+    document.querySelector('.cover').classList.toggle('showCover')
+  }
+
+  useEffect(() => {
+  }, [])
+
   return (
     <>
       <Toaster />
       <ScrollRestoration />
 
       <header className={`${styles.header}`}>
-        <div className={`__container d-flex flex-row align-items-center justify-content-between h-100`} data-width={`xxlarge`}>
+        <div className={`${styles.header__container} __container d-flex flex-row align-items-center justify-content-between h-100 ms-depth-4`} data-width={`xxxlarge`}>
           {/* Logo */}
           <Link to={`/`}>
             <div className={`${styles['logo']} d-flex align-items-center`}>
               <img alt={import.meta.env.VITE_TITLE} src={Logo} />
               <figcaption>{import.meta.env.VITE_NAME}</figcaption>
               <figure>
-                <img src={MenuIcon} className={`${styles['logo__nav']} ms-hiddenLgUp`} />
+                <img src={MenuIcon} className={`${styles['logo__nav']} ms-hiddenLgUp`} onClick={() => handleOpenNav()} />
               </figure>
             </div>
           </Link>
 
-          {/* Nav */}
-          <ul className={`${styles['nav']} d-flex flex-row align-items-center justify-content-start`}>
+          {/* Menu */}
+          <ul className={`${styles['menu']} d-flex flex-row align-items-center justify-content-start`}>
             {links.map((item, i) => {
               return (
                 <li key={i}>
@@ -158,9 +166,9 @@ export default function Root() {
                           localStorage.setItem(`defaultChain`, item.name)
                           auth.setDefaultChain(item.name)
                           showNetworkList()
-                              auth.isWalletConnected().then((addr) => {
-                                auth.setWallet(addr)
-                              })
+                          auth.isWalletConnected().then((addr) => {
+                            auth.setWallet(addr)
+                          })
                         }}
                       >
                         <figure className={`d-flex flex-row align-items-center justify-content-start`} style={{ columnGap: `.5rem` }}>
@@ -181,18 +189,26 @@ export default function Root() {
         <Outlet />
       </main>
 
-      <footer className={`${styles.footer}`}>
-        <div className={`__container`} data-width={`small`}>
-          <div className={`d-flex flex-row align-items-center justify-content-start ${styles['social']}`} style={{ columnGap: '.5rem' }}>
-            <a href={`//x.com/ArattaLabs`} target={`_blank`}>
-              <img alt={`X`} src={XIcon} />
-            </a>
-            <a href={`//github.com/web3senior/bluepoint`} target={`_blank`}>
-              <img alt={`GitHub`} src={GitHubIcon} />
-            </a>
-          </div>
-        </div>
-      </footer>
+      <div className="cover" onClick={() => handleOpenNav()} />
+      <nav className={`${styles.nav} animate`} id="modal">
+        <figure>
+          <img src={Logo} alt={`logo`} />
+        </figure>
+
+        <ul>
+          {links.map((item, i) => {
+            return (
+              <li key={i}>
+                <NavLink to={item.path} target={item.target}>
+                  {item.name}
+                </NavLink>
+              </li>
+            )
+          })}
+        </ul>
+
+        <small>Developed by Aratta Labs</small>
+      </nav>
     </>
   )
 }
