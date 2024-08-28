@@ -130,6 +130,18 @@ function Marketpalce({ title }) {
         },
       ],
     },
+    //     {
+    //   name: `BluePixelGlasses`,
+    //   description: `Blue Pixel Glasses NFT`,
+    //   image: `QmS26JSBn2sExePCHJnwKU4XprTJWBBtk8p1jw5JdK33A7`,
+    //   price: 2,
+    //   attributes: [
+    //     {
+    //       key: 'Background',
+    //       value: `Transparent`,
+    //     },
+    //   ],
+    // },
   ])
   const [color, setColor] = useState(``)
   const auth = useAuth()
@@ -309,16 +321,18 @@ function Marketpalce({ title }) {
             })
         })
       } else if (auth.defaultChain === 'Arbitrum') {
-        const json = { name: assetname, description: description, image: `https://ipfs.io/ipfs/${imageUrl}`, version: '1' }
+        console.log(`on ARB`)
+        const json = { name: item.name, description: item.description, image: `https://ipfs.io/ipfs/${item.image}`, version: '1' }
         rawMetadata = 'data:application/json;base64,' + btoa(unescape(encodeURIComponent(JSON.stringify(json))))
 
         // mint
+        console.log(contracts[1].contract_address)
         const contract = new web3.eth.Contract(contracts[1].abi, contracts[1].contract_address)
         contract.methods
-          .mint(rawMetadata, count)
+          .mint(rawMetadata, 1)
           .send({
             from: auth.wallet,
-            value: web3.utils.toWei(1, `ether`),
+            value: web3.utils.toWei(0, `ether`),
           })
           .then((res) => {
             console.log(res) //res.events.tokenId
