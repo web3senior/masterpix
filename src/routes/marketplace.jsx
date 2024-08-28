@@ -98,7 +98,7 @@ function Marketpalce({ title }) {
       name: `NeonLaserLine`,
       description: `Featuring neon-colored laser eyes that can be used to add a futuristic, cyberpunk vibe to any PFP`,
       image: `QmXjzZhXgVrDBup8q1tyHRxfbSfjHcize8tWj4wjwZKBZf`,
-      price: 2,
+      price: 1,
       attributes: [
         {
           key: 'Background',
@@ -108,9 +108,9 @@ function Marketpalce({ title }) {
     },
     {
       name: `CheeksBlushPink `,
-      description: `Pink powder`,
+      description: `CheeksBlushPink`,
       image: `QmVgFfCgdWs2LxwsozghSNcUM6b9hsqSdF98ALAjvbGPPA`,
-      price: 2,
+      price: 1,
       attributes: [
         {
           key: 'Background',
@@ -120,7 +120,7 @@ function Marketpalce({ title }) {
     },
     {
       name: `PixelGlasses`,
-      description: `Pink powder`,
+      description: `PixelGlasses`,
       image: `QmUhozsMGzWpVrj3PCn2whRbkRTXGmwEqqnLaibx9hVWe7`,
       price: 2,
       attributes: [

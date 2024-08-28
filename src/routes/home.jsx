@@ -293,7 +293,7 @@ function Home({ title }) {
       let rawMetadata
 
       if (auth.defaultChain === 'LUKSO') {
-        const tConvert = toast.loading(`Generating metadata...please wait`)
+        const tConvert = toast.loading(`Generating metadata, takes two minutes...please wait`)
         rAsset(`https://ipfs.io/ipfs/${imageUrl}`).then((result) => {
           toast.dismiss(tConvert)
           console.log(result)
