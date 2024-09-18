@@ -47,6 +47,18 @@ function Marketpalce({ title }) {
       ],
     },
     {
+      name: `DepthVision`,
+      description: `DepthVision`,
+      image: `QmPoSqiN6hbAhhLoa1SWCjMJMSQDdztqeoxV4SnFAwxvtd`,
+      price: 1,
+      attributes: [
+        {
+          key: 'Background',
+          value: `Transparent`,
+        },
+      ],
+    },
+    {
       name: `PinkRay`,
       description: `Featuring neon-colored laser eyes that can be used to add a futuristic, cyberpunk vibe to any PFP`,
       image: `QmSdaVP6ht8SKQPyYdaRfjQSrTceYAaqSEp3amnScfHGUC`,
