@@ -1,3 +1,4 @@
+import React from 'react'
 import Logo from './../../../src/assets/logo.svg'
 import styles from './Loading.module.scss'
 

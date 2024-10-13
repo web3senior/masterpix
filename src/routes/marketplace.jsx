@@ -82,6 +82,18 @@ function Marketpalce({ title }) {
         },
       ],
     },
+       {
+      name: `Witch hat`,
+      description: `Embark on a magical journey with our Witch Hat`,
+      image: `QmSNKVSTkV6UmtqDo6QjGP9jc8TejuSEEcsFb5uRTDAhLj`,
+      price: 0,
+      attributes: [
+        {
+          key: 'Background',
+          value: `Transparent`,
+        },
+      ],
+    },
     {
       name: `Visionary`,
       description: `Featuring neon-colored laser eyes that can be used to add a futuristic, cyberpunk vibe to any PFP`,
